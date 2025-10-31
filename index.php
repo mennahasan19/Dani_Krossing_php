@@ -29,7 +29,7 @@
     */ 
     
     ?>
-    <form action="includes/formhandler.php" method="post">
+<!--     <form action="includes/formhandler.php" method="post">
         <label for="fn">Firstname</label>
         <input id="fn" name="firstname" type="text">
         <br>
@@ -44,9 +44,84 @@
             <option value="none" selected>none</option>
         </select>
         <br>
-        <button type="submit">submite</button>
+        <button type="submit">submit</button>
         
-    </form> 
+    </form>  -->
+
+    <form action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="post">
+    <label for="fn">Firstnum</label>
+        <input id="fn" name="num1" type="number">
+        <br>
+        <label for="ln">Secondnum</label>
+        <input id="ln" name="num2" type="number">
+        <br>
+        <label for="op">Operator</label>
+        <select  id="op" name="operator">
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">*</option>
+            <option value="divide">/</option>
+        </select>
+        <br>
+        <button type="submit">submit</button>
+    </form>
+
+    <?php
+
+
+    if (htmlspecialchars($_SERVER["REQUEST_METHOD"] == "POST"))
+    {
+        $num1 = htmlspecialchars($_POST["num1"]);
+        $num2 = htmlspecialchars($_POST["num2"]);
+        $operator = htmlspecialchars($_POST["operator"]);
+
+        $error = false;
+    
+        if (empty($num1) || empty($num2) || empty($operator))
+        {
+        echo"you should fill all fields";
+        $error = true;
+        }
+
+        elseif (!is_numeric($num1) || !is_numeric($num2))
+        {
+        echo "you can only enter numeric value";
+        $error = true;
+        }
+        
+
+        elseif (!$error)
+        {
+            $value = 0;
+
+        switch($operator)
+        {
+            
+            case "add" :
+                $value = $num1 + $num2;
+                break;
+            case "subtract" :
+                $value = $num1 - $num2;
+                break;
+            case "multiply" :
+                $value = $num1 * $num2;
+                break;
+            case "divide" :
+                $value = $num1 / $num2;
+                break;
+            default:
+                "something went wrong" ;               
+
+        }
+        echo $value;
+    }
+    
+    }
+    
+
+
+    ?>
+
 </body>
 
 </html>

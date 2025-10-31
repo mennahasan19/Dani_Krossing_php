@@ -14,7 +14,7 @@ echo $lastname;
 echo "<br>";
 echo $favouritepet;
 
-header("Location: ../index.php");
+//header("Location: ../index.php");
 
 
 
