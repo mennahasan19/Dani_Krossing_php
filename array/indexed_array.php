@@ -22,6 +22,10 @@
     $fruits[] = "cherry"; 
     array_push($fruits,"avocado");
 
+    // Counts all elements in an array, or something in an object
+    echo count($fruits);
+    echo "<br>";
+
     // The unset() function does not re-index the array.
     // if you remove an element at index 1, the other elements (e.g., at index 0, 2, 3, etc.) will keep their original indices, leading to a "gap" in the sequence of indices
     unset($fruits[1]); 
@@ -34,6 +38,12 @@
 
     // Print all array items and some of its information
     var_dump($fruits);
+    echo "<br>";
+    print_r($fruits);
+
+    // Finds whether a variable is an array
+    echo is_array($fruits);
+    
 
     ?>
 
